@@ -1,58 +1,93 @@
-# 🚀 Getting started with Strapi
+# 🚀 Weather-Activity-API
 
-Strapi comes with a full featured [Command Line Interface](https://docs.strapi.io/developer-docs/latest/developer-resources/cli/CLI.html) (CLI) which lets you scaffold and manage your project in seconds.
+- Description : A Strapi api that integrates with both bored-api and open-weather-map-api , Checks the weather at a certain location using latitude and longitude as query string parameters
 
-### `develop`
+## Endpoints :-
+      1- "/api/v1/isitraining" - To Check if it's raining at a certain location :
+      "Domain or local host name"/api/v1/isitraining?lon={lon}&lat={lat}  ex. http://localhost:1337/api/v1/isitraining?lat=19.20&lon=19.20
+      
+      2- "/api/v1/whattodo" - To provide a recommended activity according to weather in a certain location :
+      "Domain or local host name"/api/v1/whattodo?lon={lon}&lat={lat}  ex. http://localhost:1337/api/v1/whattodo?lat=19.20&lon=19.20
+      
+## Instructions to properly run the project:-
 
-Start your Strapi application with autoReload enabled. [Learn more](https://docs.strapi.io/developer-docs/latest/developer-resources/cli/CLI.html#strapi-develop)
+1- Using CLI or PowerShell : clone the repo using the git clone command
 
-```
-npm run develop
-# or
-yarn develop
-```
+2- Using ClI or PowerShell : write command  "npm install"  to install all dependencies
 
-### `start`
+3- Add a file called ".env" at the root of your project folder and include in it all the configuration variables for your integrated apis and app_keys and Database
 
-Start your Strapi application with autoReload disabled. [Learn more](https://docs.strapi.io/developer-docs/latest/developer-resources/cli/CLI.html#strapi-start)
+          for example:-
 
-```
-npm run start
-# or
-yarn start
-```
+              HOST=0.0.0.0
+              PORT="your used port for the project"
+              APP_KEYS="put your app keys hash here"
+              API_TOKEN_SALT="put your API Token Salt hash here"
+              ADMIN_JWT_SECRET="put your Admin JWT secret key here"
+              TRANSFER_TOKEN_SALT="put your Transfer Token Salt hash here"
+              # Database
+              DATABASE_CLIENT=sqlite
+              DATABASE_FILENAME=.tmp/data.db
+              JWT_SECRET="put your JWT secret key here"
+              # Third_Party_APIS
+              Weather_Url='http://api.openweathermap.org/data/2.5/weather?'
+              Activity_Url='https://www.boredapi.com/api/activity?'
+              Weather_App_Id = "Put Here the openweatherapi appid"
 
-### `build`
+4- Using ClI or PowerShell : use "npm run build" command to build the project
 
-Build your admin panel. [Learn more](https://docs.strapi.io/developer-docs/latest/developer-resources/cli/CLI.html#strapi-build)
+5- Using ClI or PowerShell : use "npm run develop" command to run the project
 
-```
-npm run build
-# or
-yarn build
-```
+6- Navigate to "http://localhost:1337/Admin" using browser and make sure the browser can accept http protocols if it doesn't work on Chrome you can use Microsoft Edge.
 
-## ⚙️ Deployment
+7- Sign-up as an admin account 
 
-Strapi gives you many possible deployment options for your project. Find the one that suits you on the [deployment section of the documentation](https://docs.strapi.io/developer-docs/latest/setup-deployment-guides/deployment.html).
+## For Testers:-
+"api endpoints is usually set to Authenticate requests as default; so calling the above endpoints will give a response of 403 Forbidden error message. To change it do the following. "
 
-## 📚 Learn more
+8- Navigate to settings -> USERS & PERMISSIONS PLUGIN  -> Roles -> Edit Public "the marker icon next to Public Role Name" -> Location -> checkmark the 2 endpoints "isItRaining" and "whatToDo".
 
-- [Resource center](https://strapi.io/resource-center) - Strapi resource center.
-- [Strapi documentation](https://docs.strapi.io) - Official Strapi documentation.
-- [Strapi tutorials](https://strapi.io/tutorials) - List of tutorials made by the core team and the community.
-- [Strapi blog](https://docs.strapi.io) - Official Strapi blog containing articles made by the Strapi team and the community.
-- [Changelog](https://strapi.io/changelog) - Find out about the Strapi product updates, new features and general improvements.
+9- Click Save.
 
-Feel free to check out the [Strapi GitHub repository](https://github.com/strapi/strapi). Your feedback and contributions are welcome!
+10- Restart Server using Ctrl+C in Terminal or CLI then run the command "npm run develop" to run the project again.
 
-## ✨ Community
+11- Using Postman or Browser : make requests to the endpoints as mentioned above:-
 
-- [Discord](https://discord.strapi.io) - Come chat with the Strapi community including the core team.
-- [Forum](https://forum.strapi.io/) - Place to discuss, ask questions and find answers, show your Strapi project and get feedback or just talk with other Community members.
-- [Awesome Strapi](https://github.com/strapi/awesome-strapi) - A curated list of awesome things related to Strapi.
-
----
-
-<sub>🤫 Psst! [Strapi is hiring](https://strapi.io/careers).</sub>
-
+    * http://localhost:1337/api/v1/isitraining?lat={lat}&lon={lon}    --replace the latitude and longitude values in with the {lat} and {lon}
+    
+       - Success Case : returns 200 Ok response and a Weather object of 5 properties like the example below :-
+        {
+          "lon": "19.2",
+          "lat": "19.2",
+          "weatherMain": "Clear",
+          "weatherDescription": "clear sky",
+          "isItRaining": false
+        }
+        
+       - Fail Case : In the CLI or terminal it logs any error thrown if there is an error during the request lifetime and returns 400 Bad Request response and an error          like the example below :-
+        {
+          "error": {
+               "status": 400,
+               "message": "Bad Request - Invalid Parameters"
+          }
+        }
+        
+        
+      ##  ---------------------
+    * http://localhost:1337/api/v1/whattodo?lat={lat}&lon={lon}    --replace the latitude and longitude values in with the {lat} and {lon}
+    
+       - Success Case : returns 200 Ok response and an object of 3 properties like the example below :-
+        {
+        "recommendedActivity": "Play a game of Monopoly",
+        "type": "social",
+        "weatherDescription": "clear sky"
+        }
+        
+       - Fail Case : In the CLI or terminal it logs any error thrown if there is an error during the request lifetime and returns 400 Bad Request response and an error          like the example below :-
+        {
+          "error": {
+               "status": 400,
+               "message": "Bad Request - Invalid Parameters"
+          }
+        }
+    
