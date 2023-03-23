@@ -8,7 +8,6 @@ import { weather } from '../model/weather';
 export default factories.createCoreController('api::location.location', ({ strapi }) => ({
 
     isItRaining: async (ctx) => {
-        console.log(ctx.query);
         const url = process.env.Weather_Url;
         const appid = process.env.Weather_App_Id;
         try {
@@ -20,6 +19,7 @@ export default factories.createCoreController('api::location.location', ({ strap
                 isItRaining: false
             };
             const reqCtx = strapi.requestContext.get();
+            reqCtx.url = reqCtx.url.toLowerCase();
             const qs1 = (reqCtx.url.trim().split("/api/v1/isitraining?")[1]).split("&")[0];
             const qs2 = (reqCtx.url.trim().split("/api/v1/isitraining?")[1]).split("&")[1];
             const feild1 = qs1.split('=');
@@ -94,6 +94,7 @@ export default factories.createCoreController('api::location.location', ({ strap
         try {
             let weatherActivity = { recommendedActivity: "", type: "", weatherDescription: "" }
             const reqCtx = strapi.requestContext.get();
+            reqCtx.url = reqCtx.url.toLowerCase();
             const qs1 = (reqCtx.url.trim().split("/api/v1/whattodo?")[1]).split("&")[0];
             const qs2 = (reqCtx.url.trim().split("/api/v1/whattodo?")[1]).split("&")[1];
             const feild1 = qs1.split('=');
