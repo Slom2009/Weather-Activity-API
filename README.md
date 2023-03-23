@@ -15,7 +15,7 @@
 
 2- Using ClI or PowerShell : write command  "npm install"  to install all dependencies
 
-3- Add a file called ".env" at the root of your project folder and include in it all the configuration variables for your integrated apis and app_keys and Database
+3- Add a file called ".env" at the root of your project folder and include in it all the configuration variables for your integrated apis and app_keys and Database -- or if you got the .env file from me just copy and paste it in the root folder of the project.
 
           for example:-
 
