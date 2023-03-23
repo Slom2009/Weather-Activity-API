@@ -55,3 +55,19 @@ Feel free to check out the [Strapi GitHub repository](https://github.com/strapi/
 ---
 
 <sub>🤫 Psst! [Strapi is hiring](https://strapi.io/careers).</sub>
+
+## App_Keys
+HOST=0.0.0.0
+PORT=1337
+APP_KEYS=SDKVnp2AsiKy/7GXH3JhHw==,uleiRE+z0egmm0QelgXjRg==,Q2VSE8LmNbzXRqI8jR1RHA==,XNIgHMVScDAUNO3cTflEXg==
+API_TOKEN_SALT=ybqULxUp8qTBuA3mraPt8A==
+ADMIN_JWT_SECRET=AigfDciC9hgA+wpPIt+IEw==
+TRANSFER_TOKEN_SALT=rMqxKhYMp8G0FuDhvUJkcw==
+# Database
+DATABASE_CLIENT=sqlite
+DATABASE_FILENAME=.tmp/data.db
+JWT_SECRET=dlJ0c4zTMNKQoQpAPryKOA==
+# Third_Party_APIS
+Weather_Url='http://api.openweathermap.org/data/2.5/weather?'
+Activity_Url='https://www.boredapi.com/api/activity?'
+Weather_App_Id =e8034657892fe82b920092febb18950f
